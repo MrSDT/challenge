@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="user-p">
+    <ul>
+        <p>User Group:</p>
+        {% if user.is_superuser %}
+        <p>SuperUser</p>
+        {%else%}
+        <p>User</p>
+        {%endif%}
+        <br/>
+        <p>Username:</p>
+        <p>{{user}}</p>
+    <br/>
+    {% for data in data %}
+        <p>Data Readed from Update_Info Table in Database</p>
+        <br/>
+    <p>{{ data.realname }}</p>
+        <br/>
+        <p>{{ data.age }}</p>
+        <br/>
+        <p>{{ data.desc }}</p>
+    {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

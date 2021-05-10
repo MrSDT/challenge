@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+POSTS
+{% endblock %}
+{% block content %}
+<h1>Posts</h1>
+<div class="article">
+    <div class="posts-details">
+        <h2>{{inpost.title}}</h2>
+        <center><img src="{{inpost.thumbnail_def}}"/></center>
+        <p>{{inpost.body}}</p>
+        <p>{{inpost.date}}</p>
+        <p>{{inpost.author}}</p>
+        <p>You Are in URL: {{inpost.url}}</p>
+        <a href="/articles">Back</a>
+    </div>
+</div>
+{% endblock %}

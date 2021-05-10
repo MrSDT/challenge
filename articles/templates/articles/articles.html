@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+TIT
+{% endblock %}
+{% block content %}
+<h1>Articles Page</h1>
+<div class="articles-list">
+  {% for article in articles %}
+  <div class="articles-list-sub">
+  <h2>
+    <a href="{% url 'articles:articin' url=article.url %}">{{article.title}}</a>
+  </h2>
+  <center><img src="{{article.thumbnail_def}}"/></center>
+  <p class="short_des">{{article.short_description}}</p>
+  <pc class="author">{{article.author}}</pc>
+  <p class="date">{{article.date}}</p>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

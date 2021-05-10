@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/userprofile.css">
+    <meta charset="UTF-8">
+    <title>
+       {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+<header>
+    
+    <nav>
+        
+        <ul>
+            {% if user.is_superuser %}
+            <div class="dropdown">
+                <a class="dropbtn">Admin Menu</a>
+                <div class="dropdown-content">
+                  <a href="/admin" target="_blank">Admin Panel</a>
+                  <a href="/admin/articles/article/" target="_blank">Articles Section</a>
+                  <a href="/admin/auth/user/" target="_blank">Users Section</a>
+                </div>
+              </div> 
+            {%else%}
+            {%endif%}
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <a class="dropbtn">User Menu</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'profiles:userprof' %}">Profile</a>
+                  <a href="{% url 'articles:create' %}">Create Post</a>
+                  <a href="{% url 'articles:list' %}">Articles</a>
+                    <a href="{% url 'profiles:UserEditProfile' %}">Edit Profile</a>
+                    <a href="{% url 'profiles:information' %}">Update Information</a>
+                </div>
+              </div> 
+            <li>
+                <form class="logout" action="{% url 'accounts:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Exit</button>
+                </form>
+            </li>
+            {%else%}
+            <li>
+                <a href="{%url 'accounts:login'%}">Login</a>
+            </li>
+            <li>
+                <a href="{%url 'accounts:signup'%}">SignUp</a>
+            </li>
+            {%endif%}
+            
+        </ul>
+    </nav>
+    <a class="logo" href="/">LOGO</a>
+</header>
+<div class="wrapper">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

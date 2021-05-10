@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+Title S
+{% endblock %}
+{% block content %}
+<h1>Sign Up</h1>
+<div class="login_page">
+    <form class="reglog_form" action="{% url 'accounts:login' %}" method="POST">
+        {{login}}
+        {% csrf_token %}
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{request.GET.next}}">
+        {%endif%}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}
